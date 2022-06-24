@@ -25,11 +25,6 @@ app.get(
   imageValidator.validate,
   (req: express.Request, res: express.Response) => {
     return convertorService.resize(req, res)
-
-    // res.json({
-    //   message: 'it resized ^_^ ',
-    //   file: imageService.isImageExists(imageService.getOriginalImagePath('cat'))
-    // })
   }
 )
 

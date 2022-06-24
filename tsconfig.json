@@ -101,5 +101,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["./src"],
-    "exclude": ["node_modules", "spec", "build", "./src/tests/helpers/reporter.ts"]
+    "exclude": ["node_modules", "spec", "build", "./dist"]
 }

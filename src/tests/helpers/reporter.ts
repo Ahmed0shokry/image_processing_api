@@ -1,22 +1,22 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-//const jasmineReporters = require('jasmine-reporters')
-//const SpecReporter = require('jasmine-spec-reporter').SpecReporter
+import {
+  DisplayProcessor,
+  SpecReporter,
+  StacktraceOption,
+} from 'jasmine-spec-reporter'
+import SuiteInfo = jasmine.SuiteInfo
 
-const jasmineReporters = require('jasmine-reporters')
-const SpecReporter = require('jasmine-spec-reporter').SpecReporter
-
-const junitReporter = new jasmineReporters.NUnitXmlReporter({
-  savePath: './',
-  consolidateAll: false,
-})
-
-const textReporter = new SpecReporter({
-  // add jasmine-spec-reporter
-  spec: {
-    displayDuration: true,
-  },
-})
+class CustomProcessor extends DisplayProcessor {
+  public displayJasmineStarted(info: SuiteInfo, log: string): string {
+    return `${log}`
+  }
+}
 
 jasmine.getEnv().clearReporters()
-jasmine.getEnv().addReporter(junitReporter)
-jasmine.getEnv().addReporter(textReporter)
+jasmine.getEnv().addReporter(
+  new SpecReporter({
+    spec: {
+      displayStacktrace: StacktraceOption.NONE,
+    },
+    customProcessors: [CustomProcessor],
+  })
+)
