@@ -5,12 +5,19 @@ import fs from 'fs'
 import { resizeImage } from './ResizeService'
 
 async function resize(req: Request, res: Response): Promise<unknown> {
-  const image = new Image(req)
+  const image = createImageObject(req)
 
   if (!isImageAlreadyResized(image)) {
     await resizeImage(image)
   }
   return showImage(image, res)
+}
+
+function createImageObject(req: Request): Image {
+  const name = req.query.name as string
+  const hieght = parseInt(req.query.hieght as string)
+  const width = parseInt(req.query.width as string)
+  return new Image(name, hieght, width)
 }
 
 function isImageAlreadyResized(image: Image): boolean {

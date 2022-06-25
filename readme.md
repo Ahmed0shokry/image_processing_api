@@ -18,3 +18,5 @@ this is a nodejs api for making some image processing such as resize image and s
  6- example: 
 
  http://localhost:3000/api/image/resize?name=cat&width=450&hieght=300
+
+ 7- npm run test 
